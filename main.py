@@ -39,10 +39,11 @@ os.chdir(bpmn_folder_name)
 for (i, link) in enumerate(list_link_to_download):
     # Ottengo la risposta di ogni link e la metto in response
     response = requests.get(link)
+    link_name = os.path.basename(os.path.normpath(link))
     # Se la risposta non è errore 404 cioè che il file non esiste più:
     if response.status_code != 404:
         # Assegno il nome del file con l'indice
-        file_name = str(i)+".bpmn"
+        file_name = str(link_name)
         # Stampo la creazione dei file
         print(f"{i} -> creato {file_name}")
         # Scrivo nel file il contenuto della riga
